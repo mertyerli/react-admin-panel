@@ -1,0 +1,23 @@
+/* @import url("../assets/stylesheets/app.min.e0bb64e7.css"); */
+
+.App {
+  text-align: center;
+}
+
+.navbar-brand {
+  padding: 0;
+  padding-top: 2px;
+}
+.navbar-brand img {
+  animation: App-logo-spin infinite 20s linear;
+  height: 48px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

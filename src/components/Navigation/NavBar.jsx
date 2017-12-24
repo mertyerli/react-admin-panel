@@ -69,7 +69,11 @@ const NavBar = () => {
             {/* END Switch Sidebar ON/OFF */}
             {/* START Menu Only Visible on Navbar */}
             <li id="top-menu-switch" className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+              <a
+                href="javascript;"
+                className="dropdown-toggle"
+                data-toggle="dropdown"
+              >
                 Menu
                 <i className="fa fa-fw fa-caret-down" />
               </a>
@@ -990,7 +994,7 @@ const NavBar = () => {
             </li>
             {/* END Menu Only Visible on Navbar */}
             <li className="spin-search-box clearfix hidden-xs">
-              <a href="#" className="pull-left">
+              <a href="javascript;" className="pull-left">
                 <i className="fa fa-search fa-lg icon-inactive" />
                 <i className="fa fa-close fa-lg icon-active" />
               </a>
@@ -1024,7 +1028,7 @@ const NavBar = () => {
               <a
                 className="dropdown-toggle"
                 data-toggle="dropdown"
-                href="#"
+                href="javascript;"
                 role="button"
               >
                 <i className="fa fa-lg fa-fw fa-bell hidden-xs" />
@@ -1179,7 +1183,7 @@ const NavBar = () => {
               <a
                 className="dropdown-toggle"
                 data-toggle="dropdown"
-                href="#"
+                href="javascript;"
                 role="button"
               >
                 <i className="fa fa-lg fa-fw fa-envelope hidden-xs" />
@@ -1412,7 +1416,7 @@ const NavBar = () => {
               <a
                 className="dropdown-toggle user-dropdown"
                 data-toggle="dropdown"
-                href="#"
+                href="javascript;"
                 role="button"
               >
                 <span className="m-r-1">Princess Bradtke</span>

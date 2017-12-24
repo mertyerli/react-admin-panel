@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "isActive": true,
+    "flag": "ru",
+    "nameEn": "Russia",
+    "nameOriginal": "Русский язык"
+  },
+  {
+    "id": 2,
+    "isActive": false,
+    "flag": "tr",
+    "nameEn": "Turkish",
+    "nameOriginal": "Türkçe"
+  }
+]
