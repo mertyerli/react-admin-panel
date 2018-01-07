@@ -1,6 +1,6 @@
 import React from "react";
 import ProjectDropdown from "../ProjectDropdown/index";
-import NotificationDropdown from "./NotificationDropdown/index";
+import ActivitiesDropdown from "./ActivitiesDropdown/index";
 import {
   CollapseButton,
   LogoutButton,
@@ -23,7 +23,7 @@ const Header = () => {
           <img src="assets/img/logo-blue.png" alt="SmartAdmin" />{" "}
         </span>
         {/* END LOGO PLACEHOLDER */}
-        <NotificationDropdown />
+        <ActivitiesDropdown />
       </div>
       <ProjectDropdown />
       {/* #TOGGLE LAYOUT BUTTONS */}

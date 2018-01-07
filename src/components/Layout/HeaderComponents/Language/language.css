@@ -1,0 +1,9 @@
+.dropdown-language-menu ul.dropdown-menu a {
+  padding-left: 0;
+}
+
+.dropdown-language-menu ul.dropdown-menu a span {
+  margin-left: 16px;
+  width: 100%;
+  display: inline-block;
+}
