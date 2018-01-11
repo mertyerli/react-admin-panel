@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 //import { connect } from "react-redux";
 
-import Layout from "../Layout/Layout";
+import PageLayout from "../Layout/PageLayout";
 
 //import { changeLanguage } from '../../layout/actions';
 
 class Home extends Component {
   render() {
     return (
-      <Layout>
+      <PageLayout>
         Homepage
         <br />
         <br />
         {/* <button onClick={() => this.props.changeLanguage('en')}>Ingilizceye Gec</button> */}
-      </Layout>
+      </PageLayout>
     );
   }
 }

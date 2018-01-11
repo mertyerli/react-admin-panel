@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 
 class LanguageToggle extends React.Component {
   onToggle = e => {
@@ -33,8 +33,9 @@ class LanguageToggle extends React.Component {
   }
 }
 
-function mapStateToProps({ activeLanguage }) {
-  return { activeLanguage };
-}
+// function mapStateToProps({ activeLanguage }) {
+//   return { activeLanguage };
+// }
 
-export default connect(mapStateToProps, null)(LanguageToggle);
+// export default connect()(LanguageToggle);
+export default LanguageToggle;

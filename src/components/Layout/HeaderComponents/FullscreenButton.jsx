@@ -3,6 +3,8 @@ import $ from "jquery";
 
 class FullscreenButton extends React.Component {
   onToggle = e => {
+    e.preventDefault();
+
     var $body = $("body");
     if (!$body.hasClass("full-screen")) {
       $body.addClass("full-screen");
@@ -25,7 +27,6 @@ class FullscreenButton extends React.Component {
         document.webkitExitFullscreen();
       }
     }
-    e.preventDefault();
   };
 
   render() {
