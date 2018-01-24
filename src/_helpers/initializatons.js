@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { languageActions } from "../_actions";
+import { languageActions, uiActions } from "../_actions";
 import { languageService } from "../_services";
 
 export const init = {
@@ -27,5 +27,10 @@ export const init = {
             dispatch(languageActions.ready());
           });
       });
+    dispatch(uiActions.fetchSideBar());
+    // let ret = uiService.fetchSideBar().then(data => {
+    //   console.log("data", data);
+    // });
+    // console.log("ret", ret);
   }
 };

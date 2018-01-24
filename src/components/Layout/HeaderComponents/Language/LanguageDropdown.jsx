@@ -19,9 +19,6 @@ class LanguageDropdown extends React.Component {
   };
 
   render() {
-    console.log("props", this.props);
-    console.log("state", this.state);
-
     const items = this.props.languages.map(item => {
       const itemClass = classNames({
         active: item.key === this.props.activeLanguage.key

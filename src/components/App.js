@@ -16,6 +16,7 @@ class App extends Component {
           <PrivateRoute path="/Home" component={Home} />
           {/* <PrivateRoute path="/About" component={About} /> */}
           {/* <Redirect from="/" to="/Login" /> */}
+          {/* <Route component={NoMatch}/> */}
         </Switch>
       </BrowserRouter>
     );

@@ -1,4 +1,5 @@
 import { languageConstants } from "../_constants";
+import { localStorageService } from "../_services";
 
 const initialState = {
   loading: true,
@@ -16,6 +17,10 @@ export function language(state = initialState, action) {
       };
 
     case languageConstants.TOGGLE:
+      localStorageService.setItem(
+        localStorageService.constants.LANGUAGE_KEY,
+        action.payload.key
+      );
       return {
         ...state,
         activeLanguage: action.payload

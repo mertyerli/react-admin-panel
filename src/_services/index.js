@@ -1,1 +1,3 @@
-export * from "./language.services";
+export * from "./language.service";
+export * from "./local-storage.service";
+export * from "./ui.service";

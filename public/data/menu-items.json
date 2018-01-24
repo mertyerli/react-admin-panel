@@ -148,6 +148,7 @@
     },
     {
       "title": "UI Elements",
+      "isOpen": true,
       "icon": "fa fa-lg fa-fw fa-desktop",
       "items": [
         {
