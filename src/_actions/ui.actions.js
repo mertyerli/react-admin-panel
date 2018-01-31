@@ -4,14 +4,14 @@ import { uiService } from "../_services";
 //import { history } from '../_helpers';
 
 export const uiActions = {
-  fetchSideBar,
-  activateMenuItem
+  fetchSideBar
 };
 
 function fetchSideBar() {
   return dispatch => {
     dispatch(request());
 
+    // bilinçli bekletiyoruz 5 sn
     setTimeout(() => {
       uiService
         .fetchSideBar()
@@ -31,8 +31,4 @@ function fetchSideBar() {
   function failure(error) {
     return { type: uiConstants.FETCH_SIDEBAR_FAILURE, payload: error };
   }
-}
-
-function activateMenuItem(item) {
-  return { type: uiConstants.ACTIVATE_MENU_ITEM, payload: item };
 }

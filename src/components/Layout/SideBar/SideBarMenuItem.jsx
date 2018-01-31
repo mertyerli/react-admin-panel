@@ -1,22 +1,33 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import SideBarMenuItems from "./SideBarMenuItems";
 import Msg from "../../i18n/Msg";
 import classnames from "classnames";
-import { uiActions } from "../../../_actions";
 
 class SideBarMenuItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      isOpen: this.props.item.isOpen
+    });
+  }
+
   _handleClick = e => {
     e.preventDefault();
-    let { item } = this.props;
-
-    this.props.dispatch(uiActions.activateMenuItem(item));
-    //NavigationActions.activate(item);
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   };
 
   render() {
     const { item } = this.props;
+    item.isOpen = this.state.isOpen;
 
     var title = !item.parent ? (
       <span className="menu-item-parent">
@@ -84,20 +95,5 @@ class SideBarMenuItem extends React.Component {
     );
   }
 }
-/*
-function mapStateToProps(state) {
-  return {
-    activeLanguage: state.language.activeLanguage,
-    languages: state.language.items
-  };
-}
-*/
-/*
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ toggleLanguage }, dispatch);
-}
-*/
 
-export default connect()(SideBarMenuItem);
-//export default connect(mapStateToProps, null)(SideBarMenuItem);
-//export default SideBarMenuItem;
+export default SideBarMenuItem;

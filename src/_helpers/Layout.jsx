@@ -12,6 +12,7 @@ class Layout extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     init.languages(dispatch);
+    init.sideBar(dispatch);
   }
 
   render() {

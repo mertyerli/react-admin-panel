@@ -1,6 +1,5 @@
 import React from "react";
 import SideBarMenuItem from "./SideBarMenuItem";
-import classnames from "classnames";
 
 class SideBarMenuItems extends React.Component {
   render() {

@@ -27,7 +27,11 @@ export const init = {
             dispatch(languageActions.ready());
           });
       });
+  },
+
+  sideBar: dispatch => {
     dispatch(uiActions.fetchSideBar());
+
     // let ret = uiService.fetchSideBar().then(data => {
     //   console.log("data", data);
     // });

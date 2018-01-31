@@ -28,15 +28,6 @@ export function ui(state = {}, action) {
         }
       };
 
-    case uiConstants.ACTIVATE_MENU_ITEM:
-      action.payload.isOpen = true;
-      return {
-        sideBar: {
-          ...state.sideBar,
-          activeItem: action.payload
-        }
-      };
-
     default:
       return state;
   }

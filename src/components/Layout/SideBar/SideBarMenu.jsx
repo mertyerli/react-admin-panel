@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 import SideBarMenuItems from "./SideBarMenuItems";
 
 class SideBarMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      activeItem: null
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     items: [],
+  //     activeItem: null
+  //   };
+  // }
   render() {
     if (this.props.loading) {
       return (
@@ -36,12 +36,10 @@ class SideBarMenu extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log("state", state);
   let ret = {
     loading: state.ui && state.ui.sideBar ? state.ui.sideBar.loading : true,
     items: state.ui && state.ui.sideBar ? state.ui.sideBar.items : []
   };
-  console.log("ret", ret);
   return ret;
 }
 
