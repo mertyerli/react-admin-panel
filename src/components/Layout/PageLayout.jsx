@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Header from "./Header";
 //import SideBar from "../components/Layout/SideBar";
 import Footer from "./Footer";
@@ -7,8 +8,8 @@ import LoginInfo from "./SideBar/LoginInfo";
 import SideBarMenu from "./SideBar/SideBarMenu";
 import AsideChat from "./SideBar/AsideChat";
 import Layout from "../../_helpers/Layout";
-import PageRibbon from "./ContentComponents/ribbon";
 import SamplePage from "../pages/Tests/sample";
+
 import ShortCuts from "./ContentComponents/shortcuts";
 
 class PageLayout extends Component {
@@ -30,14 +31,8 @@ class PageLayout extends Component {
             </aside>
             {/* END NAVIGATION */}
             {/* MAIN PANEL */}
-            <div id="main" role="main">
-              {/* RIBBON */}
-              <PageRibbon />
-              {/* END RIBBON */}
-              {/* MAIN CONTENT */}
-              <SamplePage />
-              {/* END MAIN CONTENT */}
-            </div>
+
+             <SamplePage />
             {/* END MAIN PANEL */}
             {/* PAGE FOOTER */}
             <Footer />

@@ -1,9 +1,15 @@
 import React, { Component } from "react";
+import PageRibbon from "../../Layout/ContentComponents/ribbon";
 
 
 export default class SamplePage extends Component {
   render = () => {
     return (
+      <div id="main" role="main">
+      {/* RIBBON */}
+      <PageRibbon />
+      {/* END RIBBON */}
+      {/* MAIN CONTENT */}
         <div id="content">
                 {/* row */}
                 <div className="row">
@@ -133,6 +139,8 @@ export default class SamplePage extends Component {
                 </section>
                 {/* end widget grid */}
               </div>
+                            {/* END MAIN CONTENT */}
+            </div>
 
     );
   };

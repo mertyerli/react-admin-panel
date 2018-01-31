@@ -4,6 +4,7 @@ import SideBarMenuItem from "./SideBarMenuItem";
 class SideBarMenuItems extends React.Component {
   selectedItem=Item=>{
     console.log(Item);
+    
   }
 
   render() {
