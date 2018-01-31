@@ -6,11 +6,11 @@
       "icon": "fa fa-lg fa-fw fa-home",
       "items": [
         {
-          "route": "/dashboard",
+          "route": "/test1",
           "title": "Analytics Dashboard"
         },
         {
-          "route": "/dashboard/social-wall.html",
+          "route": "/test2",
           "title": "Social Wall"
         }
       ]

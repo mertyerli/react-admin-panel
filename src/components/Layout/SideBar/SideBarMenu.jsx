@@ -10,7 +10,14 @@ class SideBarMenu extends React.Component {
   //     items: [],
   //     activeItem: null
   //   };
+    
   // }
+
+  selectedItem = route => {
+    console.log(route);
+    
+  };
+
   render() {
     if (this.props.loading) {
       return (
@@ -20,7 +27,6 @@ class SideBarMenu extends React.Component {
         </nav>
       );
     }
-
     return (
       <nav>
         {/* 
@@ -28,7 +34,7 @@ class SideBarMenu extends React.Component {
               Please note that these links work a bit different than
               traditional href="" links. See documentation for details.
               */}
-        <SideBarMenuItems items={this.props.items} />
+        <SideBarMenuItems items={this.props.items}  />
         {this.props.childen}
       </nav>
     );

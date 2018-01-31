@@ -23,6 +23,9 @@ class SideBarMenuItem extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
+    this.props.selectedItem(this.props.item.route);
+   // console.log(this.props.item.route);
+
   };
 
   render() {
