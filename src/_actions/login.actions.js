@@ -26,5 +26,13 @@ export const loginActions = {
     return {
       type: SC.LOGOUT_REQUEST
     };
+  },
+
+  pathChange: (path) => {
+    return {
+      type: SC.CHANGE_PATH,
+      payload : path
+    };
   }
+  
 };

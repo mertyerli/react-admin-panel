@@ -2,6 +2,7 @@ import { sessionConstants as SC } from "../_constants";
 
 const initialState = {
   status: SC.SESSION_INIT,
+  path : '/',
   data: {}
 };
 
@@ -20,9 +21,14 @@ export function session(state = initialState, action) {
 
     case SC.LOGOUT_REQUEST:
       return {
-        
         status: SC.LOGGED_OUT,
-        data : {}
+        data: {}
+      };
+
+    case SC.CHANGE_PATH:
+      return {
+        ...state,
+        path: action.payload 
       };
     default:
       return state;

@@ -12,6 +12,11 @@ class SideBarMenuItem extends React.Component {
     };
   }
 
+  selectedItem = Item => {
+    // console.log(Item);
+    this.props.selectedItem(Item);
+  };
+
   componentDidMount() {
     this.setState({
       isOpen: this.props.item.isOpen
@@ -47,6 +52,7 @@ class SideBarMenuItem extends React.Component {
         style={{ display: item.isOpen ? "block" : "none" }}
         istop={false.toString()}
         items={item.items}
+        selectedItem={this.selectedItem}
       />
     ) : null;
     var icon = item.icon ? (

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 export default class Test2 extends Component {
   render = () => {
     return (
-      <div>
+      <div id="main" role="main">
         <h3> TEST PAGE </h3>
         Test Page 2
         <br/>

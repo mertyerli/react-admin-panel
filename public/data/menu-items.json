@@ -2,6 +2,7 @@
   "items": [
     {
       "title": "Dashboard",
+      "route": "/",
 
       "icon": "fa fa-lg fa-fw fa-home",
       "items": [

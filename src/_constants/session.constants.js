@@ -8,7 +8,8 @@ export const sessionConstants = {
     SESSION_INIT: 'SESSSION_INIT',
     AUTHENTICATED : 'AUTHENTICATED',
     LOGGED_OUT : 'LOGGED_OUT',
-    REMEMBER_ME : 'REMEMBER_ME'
+    REMEMBER_ME : 'REMEMBER_ME',
+    CHANGE_PATH : 'CHANGE_PATH'
   };
 
   export const loginParams =  {

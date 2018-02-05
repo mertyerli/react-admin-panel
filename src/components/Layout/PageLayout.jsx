@@ -1,19 +1,20 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
 import Header from "./Header";
-//import SideBar from "../components/Layout/SideBar";
 import Footer from "./Footer";
 import MinifyButton from "./MinifyButton";
 import LoginInfo from "./SideBar/LoginInfo";
 import SideBarMenu from "./SideBar/SideBarMenu";
 import AsideChat from "./SideBar/AsideChat";
 import Layout from "../../_helpers/Layout";
-import SamplePage from "../pages/Tests/sample";
+import SelectContent from './ContentComponents/select.content';
 
 import ShortCuts from "./ContentComponents/shortcuts";
 
 class PageLayout extends Component {
+
   render() {
+
     return (
       <Layout>
         <div className="App">
@@ -31,8 +32,7 @@ class PageLayout extends Component {
             </aside>
             {/* END NAVIGATION */}
             {/* MAIN PANEL */}
-
-             <SamplePage />
+            <SelectContent path={this.props.session.path} />
             {/* END MAIN PANEL */}
             {/* PAGE FOOTER */}
             <Footer />
@@ -50,4 +50,10 @@ class PageLayout extends Component {
   }
 }
 
-export default PageLayout;
+function mapStateToProps(state) {
+  return {
+    session: state.session,
+  };
+}
+
+export default connect(mapStateToProps, null)(PageLayout);
