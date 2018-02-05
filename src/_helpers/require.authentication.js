@@ -23,6 +23,11 @@ const today = new Date(),
 
 export default (ComposedComponent, LOGIN) => {
   class Authentication extends Component {
+    constructor(props) {
+      super(props);
+      this.PageAuthenticated = false;
+      
+    }
     static contextTypes = {
       router: object
     };
@@ -63,11 +68,9 @@ export default (ComposedComponent, LOGIN) => {
       this.props.dispatch(loginActions.loginSuccess(this.props.session.data));
     }
 
-
     pageRedirect = sessionStatus => {
       if (LOGIN) {
-      document.body.className = this.props.style.bodyLogin;
-        
+        document.body.className = this.props.style.bodyLogin;
         return;
       }
       this.setCookie("Last_Access", date);
@@ -107,14 +110,15 @@ export default (ComposedComponent, LOGIN) => {
         return;
       }
 
-      if (this.props.session.data.token !== undefined)  {
+      if (this.props.session.data.token !== undefined) {
         this.setCookie("session", this.props.session);
         if (this.getCookie(SC.REMEMBER_ME) !== undefined) {
           // buraya sessioni diske yazacak kodu yaz.
         }
       }
-      document.body.className = this.props.style.body;
+      this.PageAuthenticated= true;
       
+      document.body.className = this.props.style.body;
     };
 
     render = () => {
@@ -122,14 +126,19 @@ export default (ComposedComponent, LOGIN) => {
       const getCookie = this.getCookie;
       const removeCookie = this.removeCookie;
 
-      return (
-        <ComposedComponent
-          setCookie={setCookie}
-          getCookie={getCookie}
-          removeCookie={removeCookie}
-          {...this.props}
-        />
-      );
+      if (LOGIN || this.PageAuthenticated) {
+        return (
+          <ComposedComponent
+            setCookie={setCookie}
+            getCookie={getCookie}
+            removeCookie={removeCookie}
+            {...this.props}
+          />
+        );
+      } else {
+        //this.props.history.push('/login');
+        return <div> System Error </div>;
+      }
     };
   }
 
