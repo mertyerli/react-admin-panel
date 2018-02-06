@@ -30,6 +30,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "namor": "^1.0.1",
     "redux-devtools-extension": "^2.13.2",
     "webpack": "^3.10.0"
   }
