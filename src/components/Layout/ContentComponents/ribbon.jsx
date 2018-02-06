@@ -2,6 +2,11 @@ import React, { Component } from "react";
 
 
 export default class PageRibbon extends Component {
+
+  actionHandler = action => {
+    this.props.action(action);
+  };
+
   render = () => {
     return (
         <div id="ribbon">
@@ -21,7 +26,7 @@ export default class PageRibbon extends Component {
         </span>
         {/* breadcrumb */}
         <ol className="breadcrumb">
-          <li>Home</li>
+          <li onClick={this.actionHandler('/')}><a>Home</a></li>
           <li>Miscellaneous</li>
           <li>Blank Page</li>
         </ol>

@@ -13,6 +13,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={requireAuth(Home)} />
           <Route path="/login" component={requireAuth(signIn, true)} />
+          <Route path="" component={requireAuth(Home)} />
         </Switch>
       </BrowserRouter>
     );

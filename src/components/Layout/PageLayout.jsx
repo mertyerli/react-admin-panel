@@ -13,8 +13,11 @@ import ShortCuts from "./ContentComponents/shortcuts";
 
 class PageLayout extends Component {
 
-  render() {
+  actionHandler=action=>{
+ //   console.log('action handler : ',action);
+  }
 
+  render() {
     return (
       <Layout>
         <div className="App">
@@ -32,7 +35,7 @@ class PageLayout extends Component {
             </aside>
             {/* END NAVIGATION */}
             {/* MAIN PANEL */}
-            <SelectContent path={this.props.session.path} />
+            <SelectContent path={this.props.session.path} action={this.actionHandler}/>
             {/* END MAIN PANEL */}
             {/* PAGE FOOTER */}
             <Footer />

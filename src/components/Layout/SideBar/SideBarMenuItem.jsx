@@ -13,7 +13,6 @@ class SideBarMenuItem extends React.Component {
   }
 
   selectedItem = Item => {
-    // console.log(Item);
     this.props.selectedItem(Item);
   };
 
@@ -28,8 +27,7 @@ class SideBarMenuItem extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
-    this.props.selectedItem(this.props.item.route);
-   // console.log(this.props.item.route);
+    this.selectedItem(this.props.item.route);
 
   };
 

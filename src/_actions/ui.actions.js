@@ -19,7 +19,7 @@ function fetchSideBar() {
           items => dispatch(success(items)),
           error => dispatch(failure(error))
         );
-    }, 100);
+    }, 1100);
   };
 
   function request() {

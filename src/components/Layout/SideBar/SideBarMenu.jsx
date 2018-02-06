@@ -2,14 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 //import _ from "lodash";
 import SideBarMenuItems from "./SideBarMenuItems";
-import {loginActions} from '../../../_actions/login.actions';
+import { loginActions } from "../../../_actions/login.actions";
 
 class SideBarMenu extends React.Component {
-
   selectedItem = item => {
-    console.log(item);
-    this.props.dispatch(loginActions.pathChange(item))
-    
+    if (item !== undefined){
+     this.props.dispatch(loginActions.pathChange(item))
+    }
   };
 
   render() {
@@ -17,7 +16,7 @@ class SideBarMenu extends React.Component {
       return (
         <nav>
           loading...
-          {this.props.childen}
+          {this.props.children}
         </nav>
       );
     }
@@ -28,8 +27,11 @@ class SideBarMenu extends React.Component {
               Please note that these links work a bit different than
               traditional href="" links. See documentation for details.
               */}
-        <SideBarMenuItems items={this.props.items} selectedItem={this.selectedItem}/>
-        {this.props.childen}
+        <SideBarMenuItems
+          items={this.props.items}
+          selectedItem={this.selectedItem}
+        />
+        {this.props.children}
       </nav>
     );
   }
@@ -42,6 +44,5 @@ function mapStateToProps(state) {
   };
   return ret;
 }
-
 
 export default connect(mapStateToProps, null)(SideBarMenu);

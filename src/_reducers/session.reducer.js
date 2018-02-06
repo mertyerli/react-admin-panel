@@ -7,10 +7,14 @@ const initialState = {
 };
 
 export function session(state = initialState, action) {
+  let urlPath = window.location.pathname;
+  if ((urlPath === '') || (urlPath === '/login')) {urlPath = '/';}
+
   switch (action.type) {
     case SC.LOGIN_SUCCESS:
       return {
         status: SC.AUTHENTICATED,
+        path : urlPath,
         data: action.payload
       };
     case SC.LOGIN_FAIL:

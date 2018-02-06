@@ -7,11 +7,10 @@
       "icon": "fa fa-lg fa-fw fa-home",
       "items": [
         {
-          "route": "/test1",
           "title": "Analytics Dashboard"
         },
         {
-          "route": "/test2",
+          "route": "/test1",
           "title": "Social Wall"
         }
       ]
@@ -85,11 +84,11 @@
       "items": [
         {
           "title": "Normal Tables",
-          "route": "/tables/normal.html"
+          "route": "/tables1"
         },
         {
           "title": "Data Tables",
-          "route": "/tables/datatables",
+          "route": "/tables2",
           "badge": {
             "label": "v1.10",
             "class": "badge inbox-badge bg-color-greenLight"
@@ -165,13 +164,12 @@
           "items": [
             {
               "icon": "fa fa-plane",
-              "title": "Font Awesome",
-              "route": "/ui/icons/font-awesome"
+              "title": "Font Awesome"
             },
             {
               "icon": "glyphicon glyphicon-plane",
               "title": "Glyph Icons",
-              "route": "/ui/icons/glyphicons"
+              "route": "/test2"
             },
             {
               "icon": "fa fa-flag",
