@@ -48,8 +48,7 @@ class SelectContent extends React.Component {
 
 function mapStateToProps(state) {
   let ret = {
-    loading: state.ui && state.ui.sideBar ? state.ui.sideBar.loading : true,
-    items: state.ui && state.ui.sideBar ? state.ui.sideBar.items : []
+    items: state.ui.sideBar.items
   };
   return ret;
 }
