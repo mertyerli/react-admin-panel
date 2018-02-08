@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { languageActions, uiActions } from "../_actions";
-import { languageService } from "../_services";
+import { languageService, uiService } from "../_services";
 
 export const init = {
   languages: dispatch => {
@@ -30,6 +30,7 @@ export const init = {
   },
 
   sideBar: dispatch => {
+    uiService.fetchSideBar();
     dispatch(uiActions.fetchSideBar());
 
     // let ret = uiService.fetchSideBar().then(data => {
