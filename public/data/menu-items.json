@@ -33,7 +33,7 @@
     },
     {
       "title": "Outlook",
-      "route": "/inbox",
+      "route": "/test3",
       "icon": "fa fa-lg fa-fw fa-inbox",
       "badge": {
         "label": "14",

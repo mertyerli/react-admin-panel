@@ -4,6 +4,7 @@ import PageRibbon from "../../Layout/ContentComponents/ribbon";
 import SamplePage from "../../pages/Tests/sample";
 import Test1 from "../../pages/Tests/test1";
 import Test2 from "../../pages/Tests/test2";
+import Test3 from "../../pages/Tests/test3";
 import Tables1 from "../../pages/Tests/tables1";
 
 class SelectContent extends React.Component {
@@ -29,6 +30,9 @@ class SelectContent extends React.Component {
       case "/test2":
         return_value = <Test2 />;
         break;
+      case "/test3":
+        return_value = <Test3 />;
+        break;
       case "/tables1":
         return_value = <Tables1 />;
         break;
@@ -38,7 +42,11 @@ class SelectContent extends React.Component {
     }
 
     return (
-      <div id="main" role="main">
+      <div id="main" role="main"
+      style={{ 
+        minHeight: "300px", 
+        height: "730px" 
+      }}>
         <PageRibbon action={this.actionHandler} />
         {return_value}
       </div>
