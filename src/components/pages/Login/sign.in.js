@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { reduxForm, Field } from "redux-form";
 import { loginParams, sessionConstants as SC } from "../../../_constants";
 import { loginAPI } from "../../../_services/login.service";
 import { loginActions } from "../../../_actions";
+import {
+  renderUsernameInput,
+  renderPasswordInput
+} from "../../utils/redux.form.tools";
 
 class signIn extends Component {
   constructor(props) {
     super(props);
-    this.state = { loginParams, rememberMe: "", username: "", password: "" };
+    this.state = { loginParams, rememberMe: ""};
     this.session = {};
   }
 
@@ -31,9 +36,14 @@ class signIn extends Component {
     this.props.history.push("/");
   };
 
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+  handleFormSubmit = ({ username, password }) => {
+    this.session = loginAPI.getAuthorization(username, password);
+    if (this.session.status === SC.LOGIN_SUCCESS) {
+      this.props.dispatch(loginActions.loginSuccess(this.session));
+    } else {
+      this.props.dispatch(loginActions.loginFail(this.session));
+    }
+    this.props.history.push("/");
   };
 
   handleCheckBox = event => {
@@ -49,48 +59,34 @@ class signIn extends Component {
   };
 
   render() {
+    const { handleSubmit } = this.props;
     return (
-      <div >
-        <div className="col-xs-12 col-sm-12 col-md-5 col-lg-4" style={{ margin: "10%"}}>
+      <div>
+        <div
+          className="col-xs-12 col-sm-12 col-md-5 col-lg-4"
+          style={{ margin: "10%" }}
+        >
           <form
-            name="form"
-            onSubmit={this.handleSubmit}
+            onSubmit={handleSubmit(this.handleFormSubmit)}
             className="smart-form client-form"
           >
             <header>
               <h3> Sign in </h3>
             </header>
             <fieldset>
+              <Field
+                name="username"
+                label="Username"
+                component={renderUsernameInput}
+                type="text"
+              />{" "}
+              <Field
+                name="password"
+                label="Password"
+                component={renderPasswordInput}
+                type="password"
+              />
               <section>
-                <label className="label">Username</label>
-                <label className="input">
-                  {" "}
-                  <i className="icon-append fa fa-user" />
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.handleChange}
-                  />
-                  <b className="tooltip tooltip-top-right">
-                    <i className="fa fa-user txt-color-teal" /> Please enter
-                    email address/username
-                  </b>
-                </label>
-              </section>
-
-              <section>
-                <label className="label">Password</label>
-                <label className="input">
-                  {" "}
-                  <i className="icon-append fa fa-lock" />
-                  <input type="password" name="password" />
-                  <b className="tooltip tooltip-top-right">
-                    <i className="fa fa-lock txt-color-teal" /> Enter your
-                    password
-                  </b>
-                </label>
                 <div
                   className="note"
                   value={this.state.password}
@@ -99,7 +95,6 @@ class signIn extends Component {
                   <a href="forgotpassword.html">Forgot password?</a>
                 </div>
               </section>
-
               <section>
                 <label className="checkbox">
                   <input
@@ -124,10 +119,29 @@ class signIn extends Component {
   }
 }
 
+const validate = values => {
+  const errors = {};
+  if (!values.username) {
+    errors.username = " Please enter email address/username ";
+  }
+
+  if (!values.password) {
+ //   errors.password = "Please enter your password";
+  }
+
+  return errors;
+};
+
 function mapStateToProps(state) {
   return {
     session: state.session
   };
 }
 
-export default connect(mapStateToProps, null)(signIn);
+export default connect(mapStateToProps, null)(
+  reduxForm({
+    form: "signin",
+    destroyOnUnmount: false,
+    validate
+  })(signIn)
+);
