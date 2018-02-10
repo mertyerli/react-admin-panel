@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
-import { sessionConstants as SC } from "../../../_constants";
 import { loginAPI } from "../../../_services/login.service";
 import { loginActions } from "../../../_actions";
 import { renderUsernameInput, renderPasswordInput } from "./redux.form.tools";
@@ -12,10 +11,9 @@ class signIn extends Component {
   }
 
   componentDidMount() {
-    let checkedStatus = "";
     localStorage.getItem('token')
       ? this.props.dispatch(loginActions.rememberMe(true))
-      : null;
+      : this.props.dispatch(loginActions.rememberMe(false));
     
   }
 

@@ -108,20 +108,26 @@ export default (ComposedComponent, LOGIN) => {
         }
       }
 
+      // hala Authenticate olmadiysan Yuh sana. don login ekranina
       if (sessionStatus !== SC.AUTHENTICATED) {
         this.notAuthorized();
         return;
       }
 
+      // Okdar login gecmissin. Bunlari browsera yazki 
+      // hersayfada seni tanimak zorunda kalmayalim sekerim.
       if (this.props.session.token !== undefined) {
         this.setCookie("session", this.props.token);
         if (this.getCookie(SC.REMEMBER_ME) !== undefined) {
-          // buraya sessioni diske yazacak kodu yaz.
+          // bubilgisayari karim bile kullanmiyor. sen beni ugrastirma taniyiver.
           localStorage.setItem("token", this.props.token);
         }
       }
+
+      // en buyuk, en yetkili benim hurrraaaaa  
       this.PageAuthenticated = true;
 
+      //Gorucuye cikacagiz, tipimizi azicik duzeltelim degil mi ;)
       document.body.className = this.props.style.body;
     };
 
