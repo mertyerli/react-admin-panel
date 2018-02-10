@@ -1,61 +1,51 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
-import { loginParams, sessionConstants as SC } from "../../../_constants";
+import { sessionConstants as SC } from "../../../_constants";
 import { loginAPI } from "../../../_services/login.service";
 import { loginActions } from "../../../_actions";
-import {
-  renderUsernameInput,
-  renderPasswordInput
-} from "../../utils/redux.form.tools";
+import { renderUsernameInput, renderPasswordInput } from "./redux.form.tools";
 
 class signIn extends Component {
   constructor(props) {
     super(props);
-    this.state = { loginParams, rememberMe: ""};
-    this.session = {};
+    this.state = { rememberMe: "" };
   }
 
   componentDidMount() {
     let checkedStatus = "";
-    this.props.getCookie(SC.REMEMBER_ME) !== undefined
-      ? (checkedStatus = "YES")
-      : (checkedStatus = "");
-    this.setState({ rememberMe: checkedStatus });
+    localStorage.getItem('token')
+      ? this.props.dispatch(loginActions.rememberMe(true))
+      : null;
+    
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { username, password } = this.state;
-    this.session = loginAPI.getAuthorization(username, password);
-    if (this.session.status === SC.LOGIN_SUCCESS) {
-      this.props.dispatch(loginActions.loginSuccess(this.session));
-    } else {
-      this.props.dispatch(loginActions.loginFail(this.session));
-    }
-    this.props.history.push("/");
-  };
-
   handleFormSubmit = ({ username, password }) => {
-    this.session = loginAPI.getAuthorization(username, password);
-    if (this.session.status === SC.LOGIN_SUCCESS) {
-      this.props.dispatch(loginActions.loginSuccess(this.session));
-    } else {
-      this.props.dispatch(loginActions.loginFail(this.session));
-    }
-    this.props.history.push("/");
+    loginAPI
+      .getAuthorization({ email: username, password })
+      .then(response => {
+        this.props.dispatch(loginActions.loginSuccess(response.data.token));
+        this.props.session.rememberMe
+          ? localStorage.setItem("token", response.data.token)
+          : localStorage.removeItem("token");
+        this.props.history.push("/");
+      })
+      .catch(() => {
+        this.props.dispatch(loginActions.loginFail());
+      });
   };
 
+  // localStorage.getItem('token')
   handleCheckBox = event => {
     let checkedStatus = "";
     if (event.target.checked) {
       checkedStatus = "YES";
-      this.props.setCookie(SC.REMEMBER_ME, event.target.checked);
+      //    this.props.setCookie(SC.REMEMBER_ME, event.target.checked);
     } else {
       checkedStatus = "";
-      this.props.removeCookie(SC.REMEMBER_ME);
+      localStorage.removeItem("token");
     }
-    this.setState({ rememberMe: checkedStatus });
+    //  this.props.setState({ rememberMe:  });
+    this.props.dispatch(loginActions.rememberMe(checkedStatus));
   };
 
   render() {
@@ -98,10 +88,11 @@ class signIn extends Component {
               <section>
                 <label className="checkbox">
                   <input
+                    key="RememberMe-Login"
                     type="checkbox"
                     name="chk_RememberMe"
                     onChange={this.handleCheckBox}
-                    checked={this.state.rememberMe}
+                    checked={this.props.session.rememberMe}
                   />
                   <i />Stay signed in
                 </label>
@@ -126,7 +117,7 @@ const validate = values => {
   }
 
   if (!values.password) {
- //   errors.password = "Please enter your password";
+    //   errors.password = "Please enter your password";
   }
 
   return errors;
@@ -138,10 +129,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(
-  reduxForm({
+export default reduxForm(
+  {
     form: "signin",
     destroyOnUnmount: false,
     validate
-  })(signIn)
-);
+  },
+  mapStateToProps,
+  null
+)(signIn);

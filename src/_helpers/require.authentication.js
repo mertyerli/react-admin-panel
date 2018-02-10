@@ -26,7 +26,6 @@ export default (ComposedComponent, LOGIN) => {
     constructor(props) {
       super(props);
       this.PageAuthenticated = false;
-      
     }
     static contextTypes = {
       router: object
@@ -52,16 +51,18 @@ export default (ComposedComponent, LOGIN) => {
     };
 
     componentWillMount() {
+      // sayfanin Authentication Kontrolu Buradan basliyor
+      // Local Storafe token kontrolu index.js'te yapiliyor.
       this.pageRedirect(this.props.session.status);
     }
     componentWillUpdate(nextProps) {
+      // sayfa yenilemesinde olasi Authentication Kontrolu Buradan basliyor
       this.pageRedirect(nextProps.session.status);
     }
 
     notAuthorized() {
-      document.body.className = this.props.style.bodyLogin;
       this.context.router.history.push("/login");
-      this.props.dispatch(loginActions.logout());
+      // this.props.dispatch(loginActions.logout());
     }
 
     Authenticated() {
@@ -69,34 +70,36 @@ export default (ComposedComponent, LOGIN) => {
     }
 
     pageRedirect = sessionStatus => {
+      //son Erisimi Tarayiciya kaydet.
+      //this.setCookie("Last_Access", date);
+      localStorage.setItem("LAST ACCESS", date);
+
+      // zaten login SAYFASI ise authorization islemini iptal et
       if (LOGIN) {
         document.body.className = this.props.style.bodyLogin;
         return;
       }
-      this.setCookie("Last_Access", date);
 
-      let cookieData = {};
+      // Eger acik bir session bilgisi varsa CookieData'ya yaz.
+      let cookieData = "";
       if (this.getCookie("session") !== undefined) {
-        cookieData = this.getCookie("session").data;
+        cookieData = this.getCookie("session");
       }
-
+      // eger logout talebi gelmisse ???? niye burada yaptim bakacagim
       if (sessionStatus === SC.LOGGED_OUT) {
         this.removeCookie("session");
+        localStorage.removeItem('token');
         this.notAuthorized();
         return;
       }
 
+      // sayfa girise yetkilimi / degilmi bakalim
+      // - sayfa refresh edildiginde => Cookie var ama state AUTHENTICATED degil
       if (
         this.getCookie("session") !== undefined &&
         sessionStatus !== SC.AUTHENTICATED
       ) {
-        // bir ceraz varsa
-        let CookieState = loginAPI.getCookieAuthorization(
-          cookieData.username,
-          cookieData.token
-        );
-        if (CookieState === SC.LOGIN_SUCCESS) {
-          // ceraz guncelmi diye bak
+        if (loginAPI.getCookieAuthorization(cookieData) === SC.LOGIN_SUCCESS) {
           this.Authenticated();
           return;
         } else {
@@ -110,28 +113,25 @@ export default (ComposedComponent, LOGIN) => {
         return;
       }
 
-      if (this.props.session.data.token !== undefined) {
-        this.setCookie("session", this.props.session);
+      if (this.props.session.token !== undefined) {
+        this.setCookie("session", this.props.token);
         if (this.getCookie(SC.REMEMBER_ME) !== undefined) {
           // buraya sessioni diske yazacak kodu yaz.
+          localStorage.setItem("token", this.props.token);
         }
       }
-      this.PageAuthenticated= true;
-      
+      this.PageAuthenticated = true;
+
       document.body.className = this.props.style.body;
     };
 
     render = () => {
-      const setCookie = this.setCookie;
-      const getCookie = this.getCookie;
-      const removeCookie = this.removeCookie;
-
       if (LOGIN || this.PageAuthenticated) {
         return (
           <ComposedComponent
-            setCookie={setCookie}
-            getCookie={getCookie}
-            removeCookie={removeCookie}
+            setCookie={this.setCookie}
+            getCookie={this.getCookie}
+            removeCookie={this.removeCookie}
             {...this.props}
           />
         );
@@ -145,7 +145,8 @@ export default (ComposedComponent, LOGIN) => {
   function mapStateToProps(state) {
     return {
       session: state.session,
-      style: state.style
+      style: state.style,
+      token: state.session.token
     };
   }
 

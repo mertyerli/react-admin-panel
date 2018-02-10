@@ -1,17 +1,25 @@
 import { sessionConstants as SC } from "../_constants";
 
+
+
+export function signInUser({email, password}){
+  return dispatch =>{
+
+  }
+}
+
+
 export const loginActions = {
-  loginSuccess: data => {
+  loginSuccess: token => {
     return {
       type: SC.LOGIN_SUCCESS,
-      payload: data
+      payload: token
     };
   },
 
   loginFail: data => {
     return {
-      type: SC.LOGIN_FAIL,
-      payload: data
+      type: SC.LOGIN_FAIL
     };
   },
 
@@ -33,6 +41,12 @@ export const loginActions = {
       type: SC.CHANGE_PATH,
       payload : path
     };
-  }
+  },
   
+  rememberMe: (data) => {
+    return {
+      type: SC.REMEMBER_ME,
+      payload : data
+    };
+  }
 };
